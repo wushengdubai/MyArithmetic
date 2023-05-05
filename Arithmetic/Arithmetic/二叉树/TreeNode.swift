@@ -141,4 +141,44 @@ class MaxDiameter {
 /// 层序遍历
 class LevelTraverse {
     
+    
+    func levelTraverse1(_ root: TreeNode?) {
+        if root == nil { return }
+        // 存储每层的节点
+        var queue = [TreeNode]();
+        queue.append(root!)
+        
+        while !queue.isEmpty {
+            for _ in 0..<queue.count {
+                let node = queue.removeFirst()
+                if node.left != nil {
+                    queue.append(node.left!)
+                }
+                
+                if node.right != nil {
+                    queue.append(node.right!)
+                }
+            }
+        }
+    }
+    
+    
+    var res = [[Int]]()
+    /// 递归方式 获取每层元素
+    func levelTraverse2(_ root: TreeNode?) -> [[Int]] {
+        traverse(root, 0)
+        return res
+    }
+    
+    func traverse(_ root: TreeNode?, _ level: Int) {
+        if root == nil { return }
+        
+        if res.count <= level {
+            res.append([Int]())
+        }
+        // 前序位置，添加层节点
+        res[0].append(root!.val)
+        traverse(root!.left, level+1)
+        traverse(root!.right, level+1)
+    }
 }
