@@ -7,9 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		679B549E29F65C0B00DE131E /* TreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679B549D29F65C0B00DE131E /* TreeNode.swift */; };
 		67F8FAEB295A902100D2026A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F8FAEA295A902100D2026A /* main.swift */; };
 		67F8FAF3295A909C00D2026A /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F8FAF2295A909C00D2026A /* Search.swift */; };
+		D1C01FC62A56BF1E00F62FAC /* 二分法.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C01FBA2A56BF1D00F62FAC /* 二分法.swift */; };
+		D1C01FC72A56BF1E00F62FAC /* 二叉树.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C01FBB2A56BF1D00F62FAC /* 二叉树.swift */; };
+		D1C01FC82A56BF1E00F62FAC /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C01FBC2A56BF1D00F62FAC /* Numbers.swift */; };
+		D1C01FC92A56BF1E00F62FAC /* 差分数组.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C01FBD2A56BF1D00F62FAC /* 差分数组.swift */; };
+		D1C01FCA2A56BF1E00F62FAC /* 链表.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C01FBE2A56BF1D00F62FAC /* 链表.swift */; };
+		D1C01FCB2A56BF1E00F62FAC /* 二叉堆实现优先级队列.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C01FBF2A56BF1D00F62FAC /* 二叉堆实现优先级队列.swift */; };
+		D1C01FCC2A56BF1E00F62FAC /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C01FC02A56BF1E00F62FAC /* Sequence.swift */; };
+		D1C01FCD2A56BF1E00F62FAC /* 数组.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C01FC12A56BF1E00F62FAC /* 数组.swift */; };
+		D1C01FCE2A56BF1E00F62FAC /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C01FC22A56BF1E00F62FAC /* String.swift */; };
+		D1C01FCF2A56BF1E00F62FAC /* sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C01FC32A56BF1E00F62FAC /* sort.swift */; };
+		D1C01FD12A56BF1E00F62FAC /* 前缀合数组.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C01FC52A56BF1E00F62FAC /* 前缀合数组.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,10 +35,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		679B549D29F65C0B00DE131E /* TreeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeNode.swift; sourceTree = "<group>"; };
 		67F8FAE7295A902100D2026A /* Arithmetic */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Arithmetic; sourceTree = BUILT_PRODUCTS_DIR; };
 		67F8FAEA295A902100D2026A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		67F8FAF2295A909C00D2026A /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		D1C01FBA2A56BF1D00F62FAC /* 二分法.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "二分法.swift"; sourceTree = "<group>"; };
+		D1C01FBB2A56BF1D00F62FAC /* 二叉树.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "二叉树.swift"; sourceTree = "<group>"; };
+		D1C01FBC2A56BF1D00F62FAC /* Numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
+		D1C01FBD2A56BF1D00F62FAC /* 差分数组.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "差分数组.swift"; sourceTree = "<group>"; };
+		D1C01FBE2A56BF1D00F62FAC /* 链表.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "链表.swift"; sourceTree = "<group>"; };
+		D1C01FBF2A56BF1D00F62FAC /* 二叉堆实现优先级队列.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "二叉堆实现优先级队列.swift"; sourceTree = "<group>"; };
+		D1C01FC02A56BF1E00F62FAC /* Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
+		D1C01FC12A56BF1E00F62FAC /* 数组.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "数组.swift"; sourceTree = "<group>"; };
+		D1C01FC22A56BF1E00F62FAC /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		D1C01FC32A56BF1E00F62FAC /* sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sort.swift; sourceTree = "<group>"; };
+		D1C01FC52A56BF1E00F62FAC /* 前缀合数组.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "前缀合数组.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,14 +62,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		679B549C29F65BF300DE131E /* 二叉树 */ = {
-			isa = PBXGroup;
-			children = (
-				679B549D29F65C0B00DE131E /* TreeNode.swift */,
-			);
-			path = "二叉树";
-			sourceTree = "<group>";
-		};
 		67F8FADE295A902100D2026A = {
 			isa = PBXGroup;
 			children = (
@@ -70,18 +82,20 @@
 			isa = PBXGroup;
 			children = (
 				67F8FAEA295A902100D2026A /* main.swift */,
-				679B549C29F65BF300DE131E /* 二叉树 */,
-				67F8FAF1295A904900D2026A /* 查找 */,
-			);
-			path = Arithmetic;
-			sourceTree = "<group>";
-		};
-		67F8FAF1295A904900D2026A /* 查找 */ = {
-			isa = PBXGroup;
-			children = (
+				D1C01FBD2A56BF1D00F62FAC /* 差分数组.swift */,
+				D1C01FBF2A56BF1D00F62FAC /* 二叉堆实现优先级队列.swift */,
+				D1C01FBB2A56BF1D00F62FAC /* 二叉树.swift */,
+				D1C01FBA2A56BF1D00F62FAC /* 二分法.swift */,
+				D1C01FBE2A56BF1D00F62FAC /* 链表.swift */,
+				D1C01FC52A56BF1E00F62FAC /* 前缀合数组.swift */,
+				D1C01FC12A56BF1E00F62FAC /* 数组.swift */,
+				D1C01FBC2A56BF1D00F62FAC /* Numbers.swift */,
+				D1C01FC02A56BF1E00F62FAC /* Sequence.swift */,
+				D1C01FC32A56BF1E00F62FAC /* sort.swift */,
+				D1C01FC22A56BF1E00F62FAC /* String.swift */,
 				67F8FAF2295A909C00D2026A /* Search.swift */,
 			);
-			path = "查找";
+			path = Arithmetic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,8 +157,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				67F8FAEB295A902100D2026A /* main.swift in Sources */,
+				D1C01FCA2A56BF1E00F62FAC /* 链表.swift in Sources */,
+				D1C01FC72A56BF1E00F62FAC /* 二叉树.swift in Sources */,
+				D1C01FC82A56BF1E00F62FAC /* Numbers.swift in Sources */,
 				67F8FAF3295A909C00D2026A /* Search.swift in Sources */,
-				679B549E29F65C0B00DE131E /* TreeNode.swift in Sources */,
+				D1C01FCB2A56BF1E00F62FAC /* 二叉堆实现优先级队列.swift in Sources */,
+				D1C01FCE2A56BF1E00F62FAC /* String.swift in Sources */,
+				D1C01FCD2A56BF1E00F62FAC /* 数组.swift in Sources */,
+				D1C01FC62A56BF1E00F62FAC /* 二分法.swift in Sources */,
+				D1C01FD12A56BF1E00F62FAC /* 前缀合数组.swift in Sources */,
+				D1C01FCC2A56BF1E00F62FAC /* Sequence.swift in Sources */,
+				D1C01FC92A56BF1E00F62FAC /* 差分数组.swift in Sources */,
+				D1C01FCF2A56BF1E00F62FAC /* sort.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

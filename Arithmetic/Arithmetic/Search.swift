@@ -17,25 +17,25 @@ import Foundation
  输入：nums = [5,7,7,8,8,10], target = 8
  输出：[3,4]
  */
-func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
-    let l = search(nums, target)
-    let r = search(nums, target + 1)
-    return l == r ? [-1, -1] : [l, r - 1]
-}
-
-
-private func search(_ nums: [Int], _ target: Int) -> Int {
-    var left = 0, right = nums.count
-    while left < right {
-        let mid = (left + right) >> 1
-        if nums[mid] >= target {
-            right = mid
-        } else {
-            left = mid + 1
-        }
-    }
-    return left
-}
+//func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
+//    let l = search(nums, target)
+//    let r = search(nums, target + 1)
+//    return l == r ? [-1, -1] : [l, r - 1]
+//}
+//
+//
+//private func search(_ nums: [Int], _ target: Int) -> Int {
+//    var left = 0, right = nums.count
+//    while left < right {
+//        let mid = (left + right) >> 1
+//        if nums[mid] >= target {
+//            right = mid
+//        } else {
+//            left = mid + 1
+//        }
+//    }
+//    return left
+//}
 
 // 二分查找
 private func searchLeft(_ nums: [Int], _ target: Int) -> Int {

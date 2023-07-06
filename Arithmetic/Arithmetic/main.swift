@@ -13,7 +13,4 @@ import Foundation
 let result = minSpeedOnTime([1, 3, 2], 2.7)
 print(result)
 
-let r = [1, 2, 2].enumerated().filter { objc in
-    let i = objc.offset
-}
 
