@@ -18,26 +18,25 @@ import Foundation
  你可以设计并实现时间复杂度为 O(log n) 的算法解决此问题吗？
  */
 func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
-    let cnt = nums.count
-    if cnt == 0 { return [-1, -1] }
-    var left = -1, right = cnt
-    while left + 1 != right {
-        let mid = (left + right)/2
+    let c = nums.count
+    if c == 0 { return [-1, -1] }
+    var left = 0, right = c - 1
+    while left <= right {
+        // 使用这种求中位数，放在（left + right）大数溢出
+        let mid = left + (right - left)/2
         if nums[mid] < target { // 小于target区域
-            left = mid
+            left = mid + 1
         } else {
-            right = mid // 大于target区域
+            right = mid - 1 // 大于等于target区域
         }
     }
     
-    if right != cnt && nums[right] == target {
-        while right + 1 < cnt {
-            if nums[right + 1] != target {
-                break
-            }
+    if left < c && nums[left] == target {
+        right = left
+        while right + 1 < c && nums[right + 1] == target  {
             right += 1
         }
-        return [left + 1, right]
+        return [left, right]
     } else {
         return [-1, -1]
     }

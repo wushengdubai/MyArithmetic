@@ -9,7 +9,7 @@ import Foundation
 
 extension String {
     func index(_ index: Int) -> Character? {
-        if index > self.count { return nil }
+        if index >= self.count || index < 0 { return nil }
         let i = self.index(self.startIndex, offsetBy: index)
         return self[i]
     }
