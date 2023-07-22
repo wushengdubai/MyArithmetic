@@ -290,13 +290,16 @@ func findMin(_ nums: [Int]) -> Int {
     var l = -1, r = cnt
     while l + 1 != r {
         let m = (l+r)/2
-        // rw未缩小时，要取cnt-1
-        if nums[m] <= nums[r == cnt ? cnt - 1 : r] {  // 说明中间位于右侧，最小点在中间点或者左边
-            r = m
-        } else { // 中加点位于左侧，说明拐点在右侧
+        // r未缩小时，要取cnt-1
+        if nums[m] > nums[r == cnt ? cnt - 1 : r] {
+            // 表明中间点位于旋转点左侧，即最小值在右侧
             l = m
+        } else {
+            // 中间点位于旋转点右侧，即最小值在左侧
+            r = m
         }
     }
+    // 最小值最终落在r上
     return nums[r]
 }
 
@@ -320,7 +323,7 @@ func peakIndexInMountainArray(_ arr: [Int]) -> Int {
     var l = -1, r = cnt
     while l + 1 != r {
         let m = (l + r)/2
-        if arr[m] <= arr[m+1 < cnt ? m+1 : m] { // mid 在递增序列
+        if arr[m] < arr[m+1 < cnt ? m+1 : m] { // mid 在递增序列
             l = m
         } else { // mid 在递减序列中
             r = m
@@ -410,16 +413,17 @@ func chalkReplacer(_ chalk: [Int], _ k: Int) -> Int {
         preSum[i + 1] = preSum[i] + c
     }
     let k = k%preSum[chalk.count]
-    var left = 0, right = chalk.count
-    while left < right {
+    var left = -1, right = chalk.count
+    while left + 1 != right {
         let mid = (left + right) >> 1
-        if preSum[mid + 1] > k {
-            right =  mid
+        if preSum[mid + 1] < k {
+            // 说明中点位置不需要补充粉笔
+            left =  mid
         } else {
-            left = mid + 1
+            right = mid
         }
     }
-    return left
+    return right
 }
 
 /**

@@ -27,6 +27,7 @@ class NumArray {
         }
     }
     
+    // 区间数组之和
     func sumRange(_ left: Int, _ right: Int) -> Int {
         return preSum[right + 1] - preSum[left]
     }
