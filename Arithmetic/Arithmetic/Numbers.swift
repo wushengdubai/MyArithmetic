@@ -58,4 +58,30 @@ class Numbers {
         }
         return money
     }
+    
+    // 7. 整数反转
+    func reverse(_ x: Int) -> Int {
+        let flag = x >= 0 ? 1 : -1
+        var x = x * flag
+        var res = 0
+        while x != 0 {
+            res = res * 10 + x % 10
+            if res > Int32.max || res < Int32.min { return 0 }
+            x = x/10
+        }
+        return res * flag
+    }
+    
+    // 9。是否是回文数字
+    func isPalindrome(_ x: Int) -> Bool {
+        if x < 0 { return false }
+        
+        var res = 0, l = x
+        while l != 0 {
+            res = res * 10 + l % 10
+            l = l/10
+        }
+        
+        return res == x
+    }
 }

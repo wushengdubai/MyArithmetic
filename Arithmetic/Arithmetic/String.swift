@@ -16,9 +16,37 @@ extension String {
 }
 
 /**
+ 6. N 字形变换
+ 将一个给定字符串 s 根据给定的行数 numRows ，以从上往下、从左到右进行 Z 字形排列。
+ P   A   H   N
+ A P L S I I G
+ Y   I   R
+ 比如输入字符串为 "PAYPALISHIRING" 行数为 3 时，排列如下：
+ 之后，你的输出需要从左往右逐行读取，产生出一个新的字符串，比如："PAHNAPLSIIGYIR"。
+ */
+func convert(_ s: String, _ numRows: Int) -> String {
+    if numRows < 2 { return s }
+    var res = Array(repeating: "", count: numRows)
+    // i: 行，flag：反转标志
+    var i = 0, flag = -1
+    for c in s {
+        res[i] = "\(res[i])\(c)"
+        // 判断是否需要反转
+        if i == 0 || i == numRows-1 {
+            flag = -flag
+        }
+        // 修改行
+        i += flag
+    }
+    
+    return res.joined(separator: "")
+}
+
+/**
  判断字符串是否是回文串
  */
 func isPalindrome(_ s: String) -> Bool {
+    if s.count < 2 { return true }
     var left = 0, right = s.count - 1
     while left < right {
         if s.index(left) == s.index(right) {
@@ -446,8 +474,7 @@ func lengthOfLongestSubstring(_ s: String) -> Int {
     var window: [Character] = []
     for c in s {
         if window.contains(c) {
-            let firstIndex = window.firstIndex(of: c)!
-            window.removeFirst(firstIndex + 1) // 删除 0-字符c 元素
+            window.removeAll(where: { $0 == c }) // 删除 字符c 元素
         }
         window.append(c)
         if window.count > length {

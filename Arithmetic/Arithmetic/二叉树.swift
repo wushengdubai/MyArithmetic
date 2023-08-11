@@ -38,6 +38,79 @@ public class Node {
     public init(_ val: Int, _ next: Node?) { self.val = val; self.next = next; }
 }
 
+/// 二叉树前序遍历
+class PreorderTraverse {
+    var res = [Int]()
+    
+    func preorderTraverse(_ root: TreeNode?) -> [Int] {
+        traverse1(root)
+        return res
+    }
+    
+    // 前序遍历
+    func traverse1(_ root: TreeNode?) {
+        if root == nil { return }
+        res.append(root!.val)
+        traverse1(root!.left)
+        traverse1(root!.right)
+    }
+    
+    // 前序遍历, 不定义外部变量
+    func traverse2(_ root: TreeNode?) -> [Int]  {
+        var res = [Int]()
+        if root == nil { return res }
+        res.append(root!.val)
+        
+        res.append(contentsOf:traverse2(root!.left))
+        res.append(contentsOf:traverse2(root!.right))
+        return res
+    }
+}
+
+/// 层序遍历
+class LevelTraverse {
+    
+    func levelTraverse1(_ root: TreeNode?) {
+        if root == nil { return }
+        // 存储每层的节点
+        var queue = [TreeNode]();
+        queue.append(root!)
+        
+        while !queue.isEmpty {
+            for _ in 0..<queue.count {
+                let node = queue.removeFirst()
+                if node.left != nil {
+                    queue.append(node.left!)
+                }
+                
+                if node.right != nil {
+                    queue.append(node.right!)
+                }
+            }
+        }
+    }
+    
+    
+    var res = [[Int]]()
+    /// 递归方式 获取每层元素
+    func levelTraverse2(_ root: TreeNode?) -> [[Int]] {
+        traverse(root, 0)
+        return res
+    }
+    
+    func traverse(_ root: TreeNode?, _ level: Int) {
+        if root == nil { return }
+        
+        if res.count <= level {
+            res.append([Int]())
+        }
+        // 前序位置，添加层节点
+        res[level].append(root!.val)
+        traverse(root!.left, level+1)
+        traverse(root!.right, level+1)
+    }
+}
+
 /// 遍历二叉树深度
 class TraverseDepth {
     // 记录最终最大深度
@@ -90,111 +163,57 @@ class MaxPathSum {
         
         var left  = max(0, maxPathSum(root!.left))
         var right = max(0, maxPathSum(root!.right))
-        // 后序位置
+        // 后序位置，比较最大
         res = max(res, left + right + root!.val)
         
         return max(left, right) + root!.val
     }
 }
 
-/// 二叉树前序遍历
-class PreorderTraverse {
-    
-    var res = [Int]()
-    
-    func preorderTraverse(_ root: TreeNode?) -> [Int] {
-        traverse1(root)
-        return res
+/**
+ 543、「二叉树的直径」，计算一棵二叉树的最长直径长度。
+
+ 所谓二叉树的「直径」长度，就是任意两个结点之间的路径长度。最长「直径」并不一定要穿过根结点，比如下面这棵二叉树：
+        9
+         1
+       2   3
+     4   5
+ 它的最长直径是 3，即 [4,2,1,3] 或者 [5,2,1,3] 这两条「直径」的长度。
+ */
+// 保存最大直径长度
+var maxDiamater = 0
+func diameterOfBinaryTree(_ root: TreeNode?) -> Int {
+    // 计算每个节点左右字数深度之和
+    _ = maxDepth(root)
+    return maxDiamater
+}
+// 计算最大深度
+func maxDepth(_ root: TreeNode?) -> Int {
+    if root == nil {
+        return 0
     }
-    
-    // 前序遍历
-    func traverse1(_ root: TreeNode?) {
-        if root == nil { return }
-        res.append(root!.val)
-        traverse1(root!.left)
-        traverse1(root!.right)
-    }
-    
-    // 前序遍历, 不定义外部变量
-    func traverse2(_ root: TreeNode?) -> [Int]  {
-        var res = [Int]()
-        if root == nil { return res }
-        res.append(root!.val)
-        
-        res.append(contentsOf:traverse2(root!.left))
-        res.append(contentsOf:traverse2(root!.right))
-        return res
-    }
+    let leftDepth = maxDepth(root?.left)
+    let rightDepth = maxDepth(root?.right)
+    // 在后序位置，计算当前节点的左右子树深度
+    let tmp = leftDepth + rightDepth
+    // 存储当前节点的最大直径
+    maxDiamater = max(maxDiamater, tmp)
+    return max(leftDepth, rightDepth) + 1
 }
 
-/// 计算二叉树的最大直径
-class MaxDiameter {
-    var maxDiameter = 0
+/**
+ 226. 翻转二叉树
+ 给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。
+ */
+func invertTree(_ root: TreeNode?) -> TreeNode? {
+    if root == nil { return nil }
+    let tmp = root?.left
+    root?.left = root?.right
+    root?.right = tmp
     
-    func diameterOfTreeNode(_ root: TreeNode?) -> Int {
-        
-        return maxDiameter
-    }
-    
-    // 后序遍历
-    func maxDiameter(_ root: TreeNode?) -> Int {
-        if root == nil {  return 0 }
-        
-        var left = maxDiameter(root!.left)
-        var right = maxDiameter(root!.right)
-        // 在后序位置，计算当前节点的左右子树深度
-        let tmp = left + right
-        // 存储当前节点的最大直径
-        maxDiameter = max(maxDiameter, tmp)
-        
-        // 返回左/右子树最大深度
-        return max(left, right) + 1
-    }
-}
-
-/// 层序遍历
-class LevelTraverse {
-    
-    
-    func levelTraverse1(_ root: TreeNode?) {
-        if root == nil { return }
-        // 存储每层的节点
-        var queue = [TreeNode]();
-        queue.append(root!)
-        
-        while !queue.isEmpty {
-            for _ in 0..<queue.count {
-                let node = queue.removeFirst()
-                if node.left != nil {
-                    queue.append(node.left!)
-                }
-                
-                if node.right != nil {
-                    queue.append(node.right!)
-                }
-            }
-        }
-    }
-    
-    
-    var res = [[Int]]()
-    /// 递归方式 获取每层元素
-    func levelTraverse2(_ root: TreeNode?) -> [[Int]] {
-        traverse(root, 0)
-        return res
-    }
-    
-    func traverse(_ root: TreeNode?, _ level: Int) {
-        if root == nil { return }
-        
-        if res.count <= level {
-            res.append([Int]())
-        }
-        // 前序位置，添加层节点
-        res[0].append(root!.val)
-        traverse(root!.left, level+1)
-        traverse(root!.right, level+1)
-    }
+    _ = invertTree(root?.left)
+    _ = invertTree(root?.right)
+    return root
 }
 
 /**
@@ -260,48 +279,6 @@ func buildPrePost(_ preorder: [Int], _ preS: Int, _ preE: Int,
     return root
 }
 
-/**
- 543、「二叉树的直径」，计算一棵二叉树的最长直径长度。
-
- 所谓二叉树的「直径」长度，就是任意两个结点之间的路径长度。最长「直径」并不一定要穿过根结点，比如下面这棵二叉树：
-        9
-         1
-       2   3
-     4   5
- 它的最长直径是 3，即 [4,2,1,3] 或者 [5,2,1,3] 这两条「直径」的长度。
- */
-// 保存最大直径长度
-var maxDiamater = 0
-func diameterOfBinaryTree(_ root: TreeNode?) -> Int {
-    // 计算每个节点左右字数深度之和
-    _ = maxDepth(root)
-    return maxDiamater
-}
-// 计算最大深度
-func maxDepth(_ root: TreeNode?) -> Int {
-    if root == nil {
-        return 0
-    }
-    let leftDepth = maxDepth(root?.left)
-    let rightDepth = maxDepth(root?.right)
-    maxDiamater = max(maxDiamater, leftDepth + rightDepth)
-    return 1 + max(leftDepth, rightDepth)
-}
-
-/**
- 226. 翻转二叉树
- 给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。
- */
-func invertTree(_ root: TreeNode?) -> TreeNode? {
-    if root == nil { return nil }
-    let tmp = root?.left
-    root?.left = root?.right
-    root?.right = tmp
-    
-    _ = invertTree(root?.left)
-    _ = invertTree(root?.right)
-    return root
-}
 
 /**
  116. 填充每个节点的下一个右侧节点指针
@@ -413,7 +390,7 @@ func findDuplicateSubtrees(_ root: TreeNode?) -> [TreeNode?] {
         // 左右子树加上自己，就是以自己为根的二叉树序列化结果
         let subTree = left + "," + right + "," + "\(root!.val)"
         //
-        let count = memo[subTree] ?? 0
+        let count = memo[subTree, default: 0]
         if count == 1 {
             // 多次重复也只会被加入结果集一次
             ans.append(root)
@@ -421,6 +398,7 @@ func findDuplicateSubtrees(_ root: TreeNode?) -> [TreeNode?] {
         memo[subTree] = count + 1
         return subTree
     }
+    
     _ = traverse(root)
     return ans
 }
@@ -487,6 +465,9 @@ func deserialize1(_ nodes: inout [String]) -> TreeNode? {
  */
 func lowestCommonAncestor(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> TreeNode? {
     if root == nil { return nil }
+    if p == nil { return q }
+    if q == nil { return p }
+    // 在二叉树中找到了对应节点
     if root == p || root == q { return root }
     
     let left = lowestCommonAncestor(root?.left, p, q)
@@ -500,40 +481,5 @@ func lowestCommonAncestor(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> 
     
     // 3.如果p和q只有一个存在于root为根的树中，函数返回该节点。
     return left == nil ? right : left
-}
-
-
-/**
- 3、扁平化多级双向链表
- */
-func flatten(_ head: Node?) -> Node? {
-    // 记录分支尾结点
-    var trail: Node?
-    func flat(_ head: Node?) {
-        var cur = head
-        if head?.child != nil {
-            let next = cur?.next
-            // 把分支接入主干
-            cur?.next = cur?.child
-            // 获取分支尾节点
-            flat(cur?.child)
-            // 删除分支
-            cur?.child = nil
-            // 接入主干下一个节点
-            trail?.next = next
-            next?.prev = trail
-            // 把指针移到分支尾结点
-            cur = trail
-        }
-        if head?.next == nil {
-            trail = head
-            return
-        }
-        // 后移指针
-        cur = cur?.next
-        flat(cur)
-    }
-    flat(head)
-    return head
 }
 
