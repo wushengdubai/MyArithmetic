@@ -113,17 +113,29 @@ class LevelTraverse {
 
 /// 遍历二叉树深度
 class TraverseDepth {
+    // 递归遍历
+    func maxDepth(_ root: TreeNode?) -> Int {
+        if root == nil {
+            return 0
+        }
+        
+        // 递归计算左右字数的最大深度
+        let leftMax = maxDepth2(root!.left)
+        let rightMax = maxDepth2(root!.right)
+        
+        // 返回左右字数最大深度+根节点1
+        return max(leftMax, rightMax) + 1
+    }
+    
     // 记录最终最大深度
     var res: Int = 0
     // 记录单节点深度
     var depth: Int = 0
     
-    func maxDepth(_ root: TreeNode?) -> Int {
+    func maxDepth2(_ root: TreeNode?) -> Int {
         traverse(root)
         return res
     }
-    
-    // 递归遍历
     func traverse(_ root: TreeNode?) {
         if root == nil {
             res = max(res, depth)
@@ -137,18 +149,6 @@ class TraverseDepth {
         depth -= 1
     }
     
-    func maxDepth2(_ root: TreeNode?) -> Int {
-        if root == nil {
-            return 0
-        }
-        
-        // 递归计算左右字数的最大深度
-        var leftMax = maxDepth2(root!.left)
-        var rightMax = maxDepth2(root!.right)
-        
-        // 返回左右字数最大深度+根节点1
-        return max(leftMax, rightMax) + 1
-    }
 }
 
 
@@ -161,8 +161,8 @@ class MaxPathSum {
             return 0
         }
         
-        var left  = max(0, maxPathSum(root!.left))
-        var right = max(0, maxPathSum(root!.right))
+        let left  = max(0, maxPathSum(root!.left))
+        let right = max(0, maxPathSum(root!.right))
         // 后序位置，比较最大
         res = max(res, left + right + root!.val)
         
@@ -349,7 +349,7 @@ func flatten(_ root: TreeNode?) {
  返回 nums 构建的 最大二叉树 。
  */
 func constructMaximumBinaryTree(_ nums: [Int]) -> TreeNode? {
-    if nums.count == 0 { return nil }
+    if nums.isEmpty { return nil }
     return findMax(nums, 0, nums.count-1)
 }
 func findMax(_ nums: [Int], _ left: Int, _ right: Int) -> TreeNode? {

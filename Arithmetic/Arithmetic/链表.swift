@@ -114,10 +114,9 @@ func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
  请你将所有链表合并到一个升序链表中，返回合并后的链表。
  */
 func mergeKLists(_ lists: [ListNode?]) -> ListNode? {
-    let k = lists.count
-    if k == 0 { return nil }
+    if lists.isEmpty { return nil }
     
-    return merge(lists, 0, k - 1)
+    return merge(lists, 0, lists.count - 1)
 }
 // 递归法合并
 func merge(_ lists: [ListNode?], _ l: Int, _ r: Int) -> ListNode? {

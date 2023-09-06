@@ -8,11 +8,52 @@
 import Foundation
 
 extension String {
+    // toIndex = index +
     func index(_ index: Int) -> Character? {
         if index >= self.count || index < 0 { return nil }
         let i = self.index(self.startIndex, offsetBy: index)
         return self[i]
     }
+    
+    // 返回安全区范围内的Index
+    // index: 从0 位置 + index = 目标index
+    func index(at index: Int) -> String.Index {
+        if index < 0 { return self.startIndex }
+        if index >= self.count { return self.endIndex }
+        return self.index(self.startIndex, offsetBy: index)
+    }
+}
+
+/**
+ 5. 最长回文子串
+ */
+func longestPalindrome(_ s: String) -> String {
+    let sA = Array(s), size = s.count
+    var start = 0, end = 0
+    for i in 0..<size {
+        // 以i为中心的最长回文子串
+        let s1 = palindrome(sA, i, i)
+        // 以i和i+1为中心的最长回文子串
+        let s2 = palindrome(sA, i, i+1)
+        // 更新最长回文子串
+        let length = max(s1, s2)
+        if length > end - start + 1 {
+            start = i - (length - 1)/2
+            end = i + length/2
+        }
+    }
+    return String(sA[start...end])
+}
+// 获取回文串的长度
+func palindrome(_ s: [Character], _ l: Int, _ r: Int) -> Int {
+    var l = l, r = r
+    while l >= 0 && r < s.count && s[l] == s[r] {
+        // 向两边展开
+        l -= 1
+        r += 1
+    }
+    // 返回已s[l]和s[r]为中心的最长回文串
+    return r-l-1
 }
 
 /**
@@ -63,10 +104,10 @@ func isPalindrome(_ s: String) -> Bool {
  字符串头部去除空格，单词之间保留一个空格，多余空格全部放在尾部
  */
 func normalize(_ a: inout [Character]) -> [Character] {
-    var isBegain = true, begain = 0, end = a.count - 1
+    var begin = 0, end = a.count - 1
     // 先排除两端空格
-    while begain < end && (a[begain].isWhitespace || a[end].isWhitespace) {
-        if a[begain] == Character(" ") {
+    while begin < end && (a[begin].isWhitespace || a[end].isWhitespace) {
+        if a[begin] == Character(" ") {
             a.append(a.remove(at: 0)) // 把前面的空格移到尾部
             end -= 1
         }
@@ -75,25 +116,26 @@ func normalize(_ a: inout [Character]) -> [Character] {
         }
     }
     
-    while begain < end {
-        let c = a[begain]
+    var isBegin = true
+    while begin < end {
+        let c = a[begin]
         if c.isLetter { // 是字符
-            if isBegain {
-                a[begain] = Character(c.uppercased())
-                isBegain = false
+            if isBegin {
+                a[begin] = Character(c.uppercased())
+                isBegin = false
             } else {
-                a[begain] = Character(c.lowercased())
+                a[begin] = Character(c.lowercased())
             }
         } else { // 是空格
-            if isBegain == false { // 第一次检测到空格，不处理
-                isBegain = true
+            if isBegin == false { // 第一次检测到空格，不处理
+                isBegin = true
             } else {
-                a.append(a.remove(at: begain))
-                begain -= 1 // 当删除完空格后，相当于索引自动后移了一位，为了索引的正确，需要前移1
+                a.append(a.remove(at: begin))
+                begin -= 1 // 当删除完空格后，相当于索引自动后移了一位，需要前移1，后面会后移1到正确位置
                 end -= 1 // 尾部指针也要前移一位
             }
         }
-        begain += 1
+        begin += 1
     }
     return a
 }
@@ -146,38 +188,6 @@ func myAtoi(_ s: String) -> Int {
         }
     }
     return end == 0 ? 0 : res*sign;
-}
-
-/**
- 5. 最长回文子串
- */
-func longestPalindrome(_ s: String) -> String {
-    let sA = Array(s), size = s.count
-    var start = 0, end = 0
-    for i in 0..<size {
-        // 以i为中心的最长回文子串
-        let s1 = palindrome(sA, i, i)
-        // 以i和i+1为中心的最长回文子串
-        let s2 = palindrome(sA, i, i+1)
-        // 更新最长回文子串
-        let length = max(s1, s2)
-        if length > end - start + 1 {
-            start = i - (length - 1)/2
-            end = i + length/2
-        }
-    }
-    return String(sA[start...end])
-}
-// 获取回文串的长度
-func palindrome(_ s: [Character], _ l: Int, _ r: Int) -> Int {
-    var l = l, r = r
-    while l >= 0 && r < s.count && s[l] == s[r] {
-        // 向两边展开
-        l -= 1
-        r += 1
-    }
-    // 返回已s[l]和s[r]为中心的最长回文串
-    return r-l-1
 }
 
 /**
